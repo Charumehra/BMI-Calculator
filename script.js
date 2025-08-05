@@ -20,4 +20,6 @@ form.addEventListener('submit', function(e){
 
     const bmi = (weight / ((height * height) / 10000)).toFixed(1);
     results.innerHTML = `<span>Your BMI is ${bmi}</span>`;
+    result.style.color="Blue";
 });
+
