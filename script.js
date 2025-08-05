@@ -1,27 +1,45 @@
 const form = document.querySelector('form');
 
-form.addEventListener('submit', function(e){
-    e.preventDefault();
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
 
-    const height = parseInt(document.getElementById('height').value);
-    const weight = parseInt(document.getElementById('weight').value);
-    const results = document.querySelector('.results');
+  const heightInput = document.getElementById('height');
+  const weightInput = document.getElementById('weight');
 
-    if(height === '' || height < 0 || isNaN(height)){
-        results.innerHTML = 'Please enter a valid height';
-        return;
-    }
+  const height = parseInt(heightInput.value);
+  const weight = parseInt(weightInput.value);
 
-    if(weight === '' || weight < 0 || isNaN(weight)){
-        results.innerHTML = 'Please enter a valid weight';
-        return;
-    }
+  const results = document.querySelector('.results');
 
-    const bmi = (weight / ((height * height) / 10000)).toFixed(1);
-    results.innerHTML = `<span>Your BMI is ${bmi}</span>`;
-    
+  // Check for invalid height
+  if (isNaN(height) || height <= 0) {
+    results.innerHTML = 'Please enter a valid height';
+    results.style.color = "red";
+    results.style.fontSize = "18px";
+    return;
+  }
+
+  // Check for invalid weight
+  if (isNaN(weight) || weight <= 0) {
+    results.innerHTML = 'Please enter a valid weight';
+    results.style.color = "red";
+    results.style.fontSize = "18px";
+    return;
+  }
+
+  const bmi = (weight / ((height * height) / 10000)).toFixed(1);
+  results.innerHTML = `<span>Your BMI is ${bmi}</span>`;
+  results.style.color = "blue";
+  results.style.fontSize = "20px";
+
+  // Clear input fields after result
+  heightInput.value = '';
+  weightInput.value = '';
 });
-});
+
+
+
+
 
 
 
